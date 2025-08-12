@@ -3,7 +3,5 @@
 </script>
 
 <template>
-  <Default>
-    coucou
-  </Default>
+  dashboard
 </template>
