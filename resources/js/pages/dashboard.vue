@@ -1,7 +1,9 @@
 <script lang="ts" setup>
-
+import Dashboard from '@/layouts/dashboard.vue'
 </script>
 
 <template>
-  dashboard
+  <Dashboard title="Dashboard">
+    <!-- TODO: implement dashboard content -->
+  </Dashboard>
 </template>

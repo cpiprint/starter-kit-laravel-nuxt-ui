@@ -3,16 +3,13 @@ import { login, register } from '@/routes'
 
 const items = computed(() => [{
   label: 'Docs',
-  to: '/docs',
 }, {
   label: 'Pricing',
-  to: '/pricing',
 }, {
   label: 'Blog',
   to: '/blog',
 }, {
   label: 'Changelog',
-  to: '/changelog',
   badge: {
     label: 'New',
     color: 'primary' as const,
@@ -42,7 +39,7 @@ const items = computed(() => [{
         icon="i-lucide-log-in"
         color="neutral"
         variant="ghost"
-        to="/login"
+        :to="login().url"
         class="lg:hidden"
       />
 
@@ -50,7 +47,7 @@ const items = computed(() => [{
         label="Sign in"
         color="neutral"
         variant="outline"
-        to="/login"
+        :to="login().url"
         class="hidden lg:inline-flex"
       />
 

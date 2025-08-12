@@ -20,6 +20,7 @@ export default defineConfig({
       autoImport: {
         imports: [
           'vue',
+          '@vueuse/core',
           {
             from: 'tailwind-variants',
             imports: ['tv'],
