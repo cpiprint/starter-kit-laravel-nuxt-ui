@@ -3,6 +3,7 @@ import type { PageProps } from '@inertiajs/core'
 import type { DropdownMenuItem } from '@nuxt/ui'
 import type { User } from '@/types/user'
 import { logout } from '@/routes'
+import profile from '@/routes/profile'
 
 defineProps<{
   collapsed?: boolean
@@ -21,13 +22,13 @@ interface Page extends PageProps {
 }
 const page = usePage<Page>()
 
-const user = ref({
+const user = computed(() => ({
   name: page.props.auth.user.name,
   avatar: {
-    src: 'https://github.com/benjamincanac.png',
+    src: page.props.auth.user.profile_photo_url,
     alt: page.props.auth.user.name,
   },
-})
+}))
 
 const items = computed<DropdownMenuItem[][]>(() => ([[{
   type: 'label',
@@ -36,6 +37,8 @@ const items = computed<DropdownMenuItem[][]>(() => ([[{
 }], [{
   label: 'Profile',
   icon: 'i-lucide-user',
+  to: profile.show().url,
+  active: page.component === 'user/profile/index',
 }, {
   label: 'Billing',
   icon: 'i-lucide-credit-card',

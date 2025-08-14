@@ -1,15 +1,22 @@
 <script setup lang="ts">
 import { login, register } from '@/routes'
+import pricing from '@/routes/pricing'
+
+const page = usePage()
 
 const items = computed(() => [{
   label: 'Docs',
+  to: 'https://docs.example.com',
 }, {
   label: 'Pricing',
+  to: pricing.index().url,
+  active: page.component === 'pricing/index',
 }, {
   label: 'Blog',
-  to: '/blog',
+  to: 'https://blog.example.com',
 }, {
   label: 'Changelog',
+  to: 'https://changelog.example.com',
   badge: {
     label: 'New',
     color: 'primary' as const,

@@ -8,6 +8,8 @@ const props = defineProps<{
   }
 }>()
 
+const title = 'Forgot Password'
+
 const form = useForm({
   email: '',
 })
@@ -43,10 +45,10 @@ function onSubmit({ data }: FormSubmitEvent<typeof form>) {
 </script>
 
 <template>
-  <Auth title="Forgot Password">
+  <Auth :title="title">
     <UAuthForm
       :fields="fields"
-      title="Forgot Password"
+      :title="title"
       :submit="{ label: 'Send Reset Link' }"
       icon="i-lucide-mail"
       :loading="form.processing"

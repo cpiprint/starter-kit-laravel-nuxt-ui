@@ -98,9 +98,9 @@ function onSubmit() {
       <UColorModeButton />
 
       <UButton
-        to="https://github.com/nuxt-ui-pro/saas"
+        to="https://github.com/barbapapazes/starter-kit-laravel-nuxt-ui"
         target="_blank"
-        icon="i-simple-icons-github"
+        icon="i-simple-icons:github"
         aria-label="GitHub"
         color="neutral"
         variant="ghost"

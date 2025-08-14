@@ -9,7 +9,6 @@
 /.idea
 /.nova
 /.phpunit.cache
-/.vscode
 /.zed
 /auth.json
 /node_modules
@@ -24,5 +23,6 @@ Homestead.yaml
 Thumbs.db
 auto-imports.d.ts
 components.d.ts
-routes
-wayfinder
+resources/js/routes
+resources/js/actions
+resources/js/wayfinder
