@@ -192,10 +192,10 @@ const ui = computed(() => twoFactorAuthenticationSection())
     <UAlert v-else-if="!confirmed && !isActive" color="info" variant="subtle" title="Two factor authentication enabled but not confirmed. Please re-enable to continue." />
 
     <template v-if="isEnabling">
-      <UAlert color="info" variant="subtle" title="Finish isEnabling two factor authentication." />
+      <UAlert color="info" variant="subtle" title="Finish enabling two factor authentication." />
 
       <p>
-        To finish isEnabling two factor authentication, scan the following QR code using your phone's authenticator application or enter the setup key and provide the generated OTP code.
+        To finish enabling two factor authentication, scan the following QR code using your phone's authenticator application or enter the setup key and provide the generated OTP code.
       </p>
 
       <div :class="ui.qrCode({ class: props.ui?.qrCode })">
