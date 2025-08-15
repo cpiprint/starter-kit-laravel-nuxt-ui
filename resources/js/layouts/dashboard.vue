@@ -2,31 +2,29 @@
 import type { NavigationMenuItem } from '@nuxt/ui'
 import { useStorage } from '@vueuse/core'
 import { computed, ref } from 'vue'
+import { dashboard } from '@/routes'
+import profile from '@/routes/profile'
 
 const props = defineProps<{
   title: string
 }>()
 
-const toast = useToast()
-
-const open = ref(false)
+const page = usePage()
 
 const links = [[{
   label: 'Home',
   icon: 'i-lucide-house',
-  to: '/',
-  onSelect: () => {
-    open.value = false
-  },
+  to: dashboard().url,
+  active: page.component === 'dashboard',
+}, {
+  label: 'Profile',
+  icon: 'i-lucide-user',
+  to: profile.show().url,
+  active: page.component === 'user/profile/index',
 }], [{
   label: 'Feedback',
   icon: 'i-lucide-message-circle',
-  to: 'https://github.com/nuxt-ui-pro/dashboard-vue',
-  target: '_blank',
-}, {
-  label: 'Help & Support',
-  icon: 'i-lucide-info',
-  to: 'https://github.com/nuxt/ui-pro',
+  to: 'https://github.com/barbapapazes/starter-kit-laravel-nuxt-ui',
   target: '_blank',
 }]] satisfies NavigationMenuItem[][]
 
@@ -46,6 +44,7 @@ const groups = computed(() => [{
   }],
 }])
 
+const toast = useToast()
 const cookie = useStorage('cookie-consent', 'pending')
 if (cookie.value !== 'accepted') {
   toast.add({
@@ -79,7 +78,6 @@ if (cookie.value !== 'accepted') {
       <UDashboardGroup unit="rem" storage="local">
         <UDashboardSidebar
           id="default"
-          v-model:open="open"
           collapsible
           resizable
           class="bg-elevated/25"

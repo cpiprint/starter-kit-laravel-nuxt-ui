@@ -3,6 +3,7 @@ import type { PageProps } from '@inertiajs/core'
 import type { User } from '@/types/user'
 import currentUserPhoto from '@/routes/current-user-photo'
 import userProfileInformation from '@/routes/user-profile-information'
+import { send } from '@/routes/verification'
 
 const userProfileInformationSection = tv({
   slots: {
@@ -48,6 +49,20 @@ function onSubmit() {
 const profilePictureForm = useForm({})
 function onRemoveProfilePicture() {
   profilePictureForm.submit(currentUserPhoto.destroy())
+}
+
+const toast = useToast()
+const sendVerificationEmailForm = useForm({})
+function onSendVerificationEmail() {
+  sendVerificationEmailForm.submit(send(), {
+    onSuccess: () => {
+      toast.add({
+        color: 'info',
+        icon: 'i-lucide-mail',
+        title: 'Verification email sent',
+      })
+    },
+  })
 }
 
 const ui = computed(() => userProfileInformationSection())
@@ -145,6 +160,16 @@ const ui = computed(() => userProfileInformationSection())
         description="Please verify your email address to unlock all features."
         color="warning"
         variant="subtle"
+        orientation="horizontal"
+        :actions="[
+          {
+            label: 'Resend verification email',
+            color: 'warning',
+            variant: 'solid',
+            loading: sendVerificationEmailForm.processing,
+            onClick: () => onSendVerificationEmail(),
+          },
+        ]"
       />
     </form>
   </ProfileSection>

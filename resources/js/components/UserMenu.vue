@@ -12,9 +12,6 @@ defineProps<{
 const colorMode = useColorMode()
 const appConfig = useAppConfig()
 
-const colors = ['red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose']
-const neutrals = ['slate', 'gray', 'zinc', 'neutral', 'stone']
-
 interface Page extends PageProps {
   auth: {
     user: User
@@ -39,58 +36,7 @@ const items = computed<DropdownMenuItem[][]>(() => ([[{
   icon: 'i-lucide-user',
   to: profile.show().url,
   active: page.component === 'user/profile/index',
-}, {
-  label: 'Billing',
-  icon: 'i-lucide-credit-card',
-}, {
-  label: 'Settings',
-  icon: 'i-lucide-settings',
-  to: '/settings',
 }], [{
-  label: 'Theme',
-  icon: 'i-lucide-palette',
-  children: [{
-    label: 'Primary',
-    slot: 'chip',
-    chip: appConfig.ui.colors.primary,
-    content: {
-      align: 'center',
-      collisionPadding: 16,
-    },
-    children: colors.map(color => ({
-      label: color,
-      chip: color,
-      slot: 'chip',
-      checked: appConfig.ui.colors.primary === color,
-      type: 'checkbox',
-      onSelect: (e) => {
-        e.preventDefault()
-
-        appConfig.ui.colors.primary = color
-      },
-    })),
-  }, {
-    label: 'Neutral',
-    slot: 'chip',
-    chip: appConfig.ui.colors.neutral === 'neutral' ? 'old-neutral' : appConfig.ui.colors.neutral,
-    content: {
-      align: 'end',
-      collisionPadding: 16,
-    },
-    children: neutrals.map(color => ({
-      label: color,
-      chip: color === 'neutral' ? 'old-neutral' : color,
-      slot: 'chip',
-      type: 'checkbox',
-      checked: appConfig.ui.colors.neutral === color,
-      onSelect: (e) => {
-        e.preventDefault()
-
-        appConfig.ui.colors.neutral = color
-      },
-    })),
-  }],
-}, {
   label: 'Appearance',
   icon: 'i-lucide-sun-moon',
   children: [{
@@ -120,17 +66,12 @@ const items = computed<DropdownMenuItem[][]>(() => ([[{
 }], [{
   label: 'Documentation',
   icon: 'i-lucide-book-open',
-  to: 'https://ui.nuxt.com/getting-started/installation/pro/vue',
+  to: 'https://ui.nuxt.com/getting-started/installation/vue',
   target: '_blank',
 }, {
   label: 'GitHub repository',
   icon: 'simple-icons:github',
-  to: 'https://github.com/nuxt-ui-pro/dashboard-vue',
-  target: '_blank',
-}, {
-  label: 'Upgrade to Pro',
-  icon: 'i-lucide-rocket',
-  to: 'https://ui.nuxt.com/pro/purchase',
+  to: 'https://github.com/barbapapazes/starter-kit-laravel-nuxt-ui',
   target: '_blank',
 }], [{
   label: 'Log out',
