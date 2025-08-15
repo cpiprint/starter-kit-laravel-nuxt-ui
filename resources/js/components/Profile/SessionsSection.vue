@@ -22,5 +22,6 @@ const ui = computed(() => sessionsSection())
 </script>
 
 <template>
+  <!-- TODO: https://github.com/Barbapapazes/starter-kit-laravel-nuxt-ui/issues/10 -->
   sessions section
 </template>

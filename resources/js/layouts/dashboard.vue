@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { NavigationMenuItem } from '@nuxt/ui'
 import { useStorage } from '@vueuse/core'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { dashboard } from '@/routes'
 import profile from '@/routes/profile'
 

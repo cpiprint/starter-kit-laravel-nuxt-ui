@@ -10,7 +10,6 @@ defineProps<{
 }>()
 
 const colorMode = useColorMode()
-const appConfig = useAppConfig()
 
 interface Page extends PageProps {
   auth: {
