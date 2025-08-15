@@ -10,6 +10,7 @@ const passwordSection = tv({
 })
 
 export interface PasswordSectionProps {
+  delay?: number
   class?: any
   ui?: Partial<typeof passwordSection.slots>
 }
@@ -56,6 +57,7 @@ const ui = computed(() => passwordSection())
   <ProfileSection
     title="Update Password"
     description="Ensure your account is using a long, random password to stay secure."
+    :delay="props.delay"
     :class="ui.base({ class: [props.ui?.base, props.class] })"
     :ui="{ actions: 'flex-row-reverse lg:flex-row' }"
   >

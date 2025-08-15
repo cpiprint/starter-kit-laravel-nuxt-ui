@@ -8,6 +8,7 @@ const deleteCurrentUserSection = tv({
 })
 
 export interface DeleteCurrentUserSectionProps {
+  delay?: number
   class?: any
   ui?: Partial<typeof deleteCurrentUserSection.slots>
 }
@@ -36,6 +37,7 @@ const ui = computed(() => deleteCurrentUserSection())
   <ProfileSection
     title="Delete Account"
     description="Permanently delete your account."
+    :delay="props.delay"
     :class="ui.base({ class: [props.ui?.base, props.class] })"
   >
     <template #actions>

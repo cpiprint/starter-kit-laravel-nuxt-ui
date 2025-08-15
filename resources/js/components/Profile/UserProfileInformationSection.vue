@@ -14,6 +14,7 @@ const userProfileInformationSection = tv({
 })
 
 export interface UserProfileInformationSectionProps {
+  delay?: number
   class?: any
   ui?: Partial<typeof userProfileInformationSection.slots>
 }
@@ -72,6 +73,7 @@ const ui = computed(() => userProfileInformationSection())
   <ProfileSection
     title="Profile Information"
     description="These informations will be displayed publicly."
+    :delay="props.delay"
     :class="ui.base({ class: [props.ui?.base, props.class] })"
     :ui="{ actions: 'flex-row-reverse lg:flex-row' }"
   >

@@ -1,4 +1,6 @@
 <script lang="ts">
+import { Motion } from 'motion-v'
+
 const profileSection = tv({
   slots: {
     base: 'flex flex-col gap-6',
@@ -7,6 +9,7 @@ const profileSection = tv({
 })
 
 export interface ProfileSectionProps {
+  delay?: number
   title: string
   description?: string
   class?: any
@@ -20,7 +23,9 @@ export interface ProfileSectionSlots {
 </script>
 
 <script lang="ts" setup>
-const props = defineProps<ProfileSectionProps>()
+const props = withDefaults(defineProps<ProfileSectionProps>(), {
+  delay: 0,
+})
 defineEmits<ProfileSectionEmits>()
 const slots = defineSlots<ProfileSectionSlots>()
 
@@ -30,17 +35,44 @@ const ui = computed(() => profileSection())
 <template>
   <div :class="ui.base({ class: [props.ui?.base, props.class] })">
     <UPageCard
-      :title="props.title"
-      :description="props.description"
       variant="naked"
       orientation="horizontal"
     >
-      <div :class="ui.actions({ class: props.ui?.actions })">
-        <slot name="actions" />
-      </div>
+      <template #title>
+        <Motion
+          :initial="{ opacity: 0, transform: 'translateY(10px)' }"
+          :animate="{ opacity: 1, transform: 'translateY(0)', transition: { duration: 0.3, delay: props.delay } }"
+        >
+          {{ props.title }}
+        </Motion>
+      </template>
+
+      <template #description>
+        <Motion
+          :initial="{ opacity: 0, transform: 'translateY(10px)' }"
+          :animate="{ opacity: 1, transform: 'translateY(0)', transition: { duration: 0.2, delay: 0.1 + props.delay } }"
+        >
+          {{ props.description }}
+        </Motion>
+      </template>
+
+      <Motion
+        :initial="{ opacity: 0, scale: 0.96 }"
+        :animate="{ opacity: 1, scale: 1, transition: { duration: 0.2, delay: 0.1 + props.delay } }"
+      >
+        <div :class="ui.actions({ class: props.ui?.actions })">
+          <slot name="actions" />
+        </div>
+      </Motion>
     </UPageCard>
-    <UPageCard v-if="!!slots.default" variant="subtle">
-      <slot />
-    </UPageCard>
+
+    <Motion
+      :initial="{ opacity: 0, transform: 'translateY(10px)' }"
+      :animate="{ opacity: 1, transform: 'translateY(0)', transition: { duration: 0.2, delay: 0.25 + props.delay } }"
+    >
+      <UPageCard v-if="!!slots.default" variant="subtle">
+        <slot />
+      </UPageCard>
+    </Motion>
   </div>
 </template>

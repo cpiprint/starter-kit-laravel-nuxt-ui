@@ -15,6 +15,7 @@ const twoFactorAuthenticationSection = tv({
 })
 
 export interface TwoFactorAuthenticationSectionProps {
+  delay?: number
   class?: any
   ui?: Partial<typeof twoFactorAuthenticationSection.slots>
 }
@@ -131,6 +132,7 @@ const ui = computed(() => twoFactorAuthenticationSection())
   <ProfileSection
     title="Two Factor Authentication"
     description="Add additional security to your account using two factor authentication."
+    :delay="props.delay"
     :class="ui.base({ class: [props.ui?.base, props.class] })"
     :ui="{ actions: 'flex-row-reverse lg:flex-row' }"
   >
